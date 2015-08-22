@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action='/upload' method='post' enctype="multipart/form-data">
+    <input type='file' name='file'/>
+    <input type='submit' value='ok'/>
+</form>
+
+
+<p>
+http://ip/logprocs/v1/gets/                获取所有<br>
+http://ip/logprocs/v1/gets/&lt;rid&gt;     按ID获取<br>
+http://ip/logprocs/v1/del/&lt;rid&gt;     按ID删除<br>
+</p>
+
+{% if result %}
+<table border="1"><br>
+    <tr>
+    {% for k in result%}
+        <th>{{k}}</th>
+    {% endfor%}
+    </tr>
+    <tr>
+    {% for k in result%}
+        <th>{{result[k]}}</th>
+    {% endfor%}
+    </tr>
+</table><br>
+{% endif %}
+
+{% if results %}
+<table border="1"><br>
+{% for res in results %}
+<table border="1"><br>
+    <tr>
+    {% for k in res%}
+        <th>{{k}}</th>
+    {% endfor%}
+    </tr>
+    <tr>
+    {% for k in res%}
+        <th>{{res[k]}}</th>
+    {% endfor%}
+    </tr>
+</table><br>
+{% endfor %}
+{% endif %}
+
+</body>
+</html>
