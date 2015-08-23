@@ -28,6 +28,10 @@ def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/upload', methods = ['POST'])
 def upload():
     if request.method == 'POST':
@@ -40,10 +44,6 @@ def upload():
             wc = chs.reduceByKey(lambda x, y: x+y).collectAsMap()
             db.LogProc.save(wc)
     return redirect('/')
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 @app.route('/logprocs/v1/gets/', methods=['GET'])
 def get_results():
@@ -63,4 +63,4 @@ def del_result(rid):
     return redirect('/logprocs/v1/gets/')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
